@@ -1,0 +1,83 @@
+div#header {
+    background-image: linear-gradient(65deg, blue, purple);
+    color: white;
+}
+
+body {
+    margin: 0px;
+}
+
+
+div#wrapper {
+    margin: 14px;
+}
+
+section#open-section {
+    margin-left: 33%;
+    margin-right: 33%;
+    text-align: center;
+}
+
+section#time-section {
+    height: 600px;
+    overflow-y: auto;
+}
+table#time-table {
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid;
+}
+
+table#time-table > tbody > tr {
+    border: 1px solid grey;
+}
+
+tr#days {
+    padding: 5px;
+}
+
+tr {
+    border: 1px solid black;
+}
+
+.container {
+  position: relative;
+  margin: 30px;
+}
+
+.box {
+  width: 100%;
+  height: 92%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 1.0;
+}
+
+.overlay {
+  top: 50%;
+  z-index: 9;
+  margin-left: 33%;
+  width: 33%;
+}
+
+div#add-events-2 {
+    background-image: linear-gradient(65deg,blue,purple);
+    color: white;
+    padding: 15px;
+}
+
+.new_event_buttons {
+    padding: 2px;
+    margin:5px;
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+    font-family: 'century-gothic';
+}
+
+div#add-events-2 > table {
+  color: white;
+}
+
+
