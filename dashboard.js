@@ -130,7 +130,7 @@ onAuthStateChanged(auth, (user) => {
     onValue(eventRef, (snapshot) => {
      var data = snapshot.val();
      console.log(data);
-     if(data === null || data === dune) {
+     if(data !== null && data !== dune) {
       for(let n = 0; n < Object.keys(data).length; n++) {
        var list_of_items = Object.keys(data);
        display_new_events(data[list_of_items[n]]);
