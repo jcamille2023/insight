@@ -16,6 +16,18 @@ var uid;
   const database = getDatabase(app);
   const auth = getAuth(app);
 
+function display_new_events(data) {
+ console.log(data);
+ if (Object.keys(data).length == 0) {
+  var time_section = document.getElementById("time-section");
+  var event_name = data.name;
+  time_section.innerHTML += "<div id='event_" + data.event_number + "'>";
+  time_section.innerHTML += "<p>" + data.name; + "</p>";
+  time_section.innerHTML += "</div>";
+ }
+ 
+}
+
 function logout() {
   signOut(auth).then(() => {
   console.log("User is signed out.");
@@ -61,6 +73,7 @@ function add_times_to_schedule() {
 window.add_times_to_schedule = add_times_to_schedule;
 
 function submit_new_events() {
+ var event_number = Math.floor(Math.random()*99999)
  var name = document.getElementById('name').value;
  var start_time = document.getElementById("start_time").value;
  var end_time = document.getElementById("end_time").value;
@@ -81,12 +94,15 @@ function submit_new_events() {
    sunday: sunday_active,
  };
  var event = {
+  name: name,
+  event_number: event_number,
   start_time: start_time,
   end_time: end_time,
   days_active: days_active,
  };
+ 
  const db = getDatabase();
- set(ref(db, 'users/' + uid + "/" + name), event).then(console.log("Event successfully added"));
+ set(ref(db, 'users/' + uid + "/" + event_number), event).then(console.log("Event successfully added"));
  var div = document.getElementById("add-events");
  div.innerHTML = "";
  div.setAttribute("style","visiblity: hidden;");
@@ -113,6 +129,10 @@ onAuthStateChanged(auth, (user) => {
     onValue(eventRef, (snapshot) => {
      var data = snapshot.val();
      console.log(data);
+     for(let n = 0; n < Object.keys(data).length; n++) {
+      var list_of_items = Object.keys(data);
+      display_new_events(data[list_of_items[n]]);
+     }
      
      });
 
