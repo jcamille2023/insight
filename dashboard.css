@@ -13,24 +13,19 @@ div#wrapper {
 }
 
 section#open-section {
+
+    text-align: center; 
+
+}
+
+section#height-section {
     margin-left: 33%;
     margin-right: 33%;
-    text-align: center;
+    height: 100%;
+    text-align: center; 
+
 }
 
-section#time-section {
-    height: 600px;
-    overflow-y: auto;
-}
-table#time-table {
-    margin-left: auto;
-    margin-right: auto;
-    border: 1px solid;
-}
-
-table#time-table > tbody > tr {
-    border: 1px solid grey;
-}
 
 tr#days {
     padding: 5px;
@@ -43,6 +38,7 @@ tr {
 .container {
   position: relative;
   margin: 30px;
+  height:100%
 }
 
 .box {
@@ -81,3 +77,13 @@ div#add-events-2 > table {
 }
 
 
+
+#time-section {
+  background-image: url("graph_paper.png");
+  margin-left: 33%;
+  
+  background-repeat: no-repeat;
+  height:100%;
+  background-size: contain;
+
+}
