@@ -2,6 +2,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebas
 import { getAuth, onAuthStateChanged, signOut} from "https://www.gstatic.com/firebasejs/10.5.0/firebase-auth.js";
 import { getDatabase, set, ref, onValue, get, child } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-database.js";
 var uid;
+var dune;
  const firebaseConfig = {
     apiKey: "AIzaSyCqUDOyX-OrrrncNv5uABW8hiLndPsMDMg",
     authDomain: "insight-34bc8.firebaseapp.com",
@@ -129,7 +130,7 @@ onAuthStateChanged(auth, (user) => {
     onValue(eventRef, (snapshot) => {
      var data = snapshot.val();
      console.log(data);
-     if(data == null) {
+     if(data === null || data === dune) {
       for(let n = 0; n < Object.keys(data).length; n++) {
        var list_of_items = Object.keys(data);
        display_new_events(data[list_of_items[n]]);
