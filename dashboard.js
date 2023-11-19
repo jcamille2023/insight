@@ -21,10 +21,22 @@ function display_new_events(data) {
  console.log(data);
  if (Object.keys(data).length == 0) {
   var time_section = document.getElementById("time-section");
-  var event_name = data.name;
-  time_section.innerHTML += "<div id='event_" + data.event_number + "'>";
-  time_section.innerHTML += "<p>" + data.name; + "</p>";
-  time_section.innerHTML += "</div>";
+  var event_div = document.createElement("div");
+  var event_title = document.createElement("h3");
+  var event_times = document.createElement("p");
+  var time_text = "From " + data.start_time + " to " + data.end_time;
+  event_times.appendChild(document.createTextNode("Times:"));
+  event_times.appendChild(document.createTextNode(time_text));
+  
+  
+  for(let n = 0; n < Object.keys(data.days_active).length; n++) {
+   console.log(data.days_active[n]);
+  }
+  var title_text = document.createTextNode(data.name);
+  event_title.appendChild(title_text);
+  event_div.appendChild(event_title);
+  event_div.appendChild(event_times);
+  time_section.appendChild(event_div);
  }
  
 }
@@ -74,7 +86,7 @@ function add_times_to_schedule() {
 window.add_times_to_schedule = add_times_to_schedule;
 
 function submit_new_events() {
- var event_number = Math.floor(Math.random()*99999)
+ var event_number = Math.floor(Math.random()*99999);
  var name = document.getElementById('name').value;
  var start_time = document.getElementById("start_time").value;
  var end_time = document.getElementById("end_time").value;
