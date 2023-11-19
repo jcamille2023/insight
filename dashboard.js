@@ -24,8 +24,9 @@ function display_new_events(data) {
  console.log(data);
  if (Object.keys(data).length !== 0) {
   var time_section = document.getElementById("time-section");
-  while (time_section.hasChildNodes()) {
-   time_section.removeChild(time_section.firstChild);
+  var event_table = document.getElementById("event-table");
+  while event_table.hasChildNodes()) {
+   event_table.removeChild(event_table.firstChild);
   }
   var event_div = document.createElement("div");
   event_div.style.background = 'url("https://cdn1.vectorstock.com/i/1000x1000/55/00/yellow-sticky-note-with-drawing-pin-vector-7575500.jpg")';
@@ -43,7 +44,7 @@ function display_new_events(data) {
   event_div.appendChild(event_title);
   event_div.appendChild(event_times);
   console.log(event_div);
-  var event_table = document.getElementById("event-table");
+  
   if (row_filled == true || first_row_created == false) {
    let row = event_table.insertRow(-1);
    let cell = row.insertCell(-1);
