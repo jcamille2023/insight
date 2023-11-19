@@ -25,7 +25,7 @@ function display_new_events(data) {
  if (Object.keys(data).length !== 0) {
   var time_section = document.getElementById("time-section");
   var event_table = document.getElementById("event-table");
-  while event_table.hasChildNodes()) {
+  while (event_table.hasChildNodes()) {
    event_table.removeChild(event_table.firstChild);
   }
   var event_div = document.createElement("div");
