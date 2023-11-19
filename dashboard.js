@@ -25,9 +25,7 @@ function display_new_events(data) {
  if (Object.keys(data).length !== 0) {
   var time_section = document.getElementById("time-section");
   var event_table = document.getElementById("event-table");
-  while (event_table.hasChildNodes()) {
-   event_table.removeChild(event_table.firstChild);
-  }
+  
   var event_div = document.createElement("div");
   event_div.style.background = 'url("https://cdn1.vectorstock.com/i/1000x1000/55/00/yellow-sticky-note-with-drawing-pin-vector-7575500.jpg")';
   console.log(event_div);
@@ -137,6 +135,10 @@ onAuthStateChanged(auth, (user) => {
      var data = snapshot.val();
      console.log(data);
      if(data !== null && data !== dune) {
+      var event_table = document.getElementById("event-table");
+      while (event_table.hasChildNodes()) {
+       event_table.removeChild(event_table.firstChild);
+       }
       for(let n = 0; n < Object.keys(data).length; n++) {
        var list_of_items = Object.keys(data);
        display_new_events(data[list_of_items[n]]);
