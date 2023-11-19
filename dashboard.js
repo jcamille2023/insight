@@ -99,15 +99,6 @@ function submit_new_events() {
  var name = document.getElementById('name').value;
  var start_datetime = document.getElementById("start_time").value;
  var end_datetime = document.getElementById("end_time").value;
- var days_active = {
-   monday: monday_active,
-   tuesday: tuesday_active,
-   wednesday: wednesday_active,
-   thursday: thursday_active,
-   friday: friday_active,
-   saturday: saturday_active,
-   sunday: sunday_active,
- };
  var event = {
   name: name,
   event_number: event_number,
