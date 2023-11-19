@@ -19,7 +19,7 @@ var dune;
 
 function display_new_events(data) {
  console.log(data);
- if (Object.keys(data).length == 0) {
+ if (Object.keys(data).length !== 0) {
   var time_section = document.getElementById("time-section");
   var event_div = document.createElement("div");
   console.log(event_div);
