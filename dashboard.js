@@ -22,6 +22,7 @@ function display_new_events(data) {
  if (Object.keys(data).length == 0) {
   var time_section = document.getElementById("time-section");
   var event_div = document.createElement("div");
+  console.log(event_div);
   var event_title = document.createElement("h3");
   var event_times = document.createElement("p");
   var time_text = "From " + data.start_time + " to " + data.end_time;
@@ -36,6 +37,7 @@ function display_new_events(data) {
   event_title.appendChild(title_text);
   event_div.appendChild(event_title);
   event_div.appendChild(event_times);
+  console.log(event_div);
   time_section.appendChild(event_div);
  }
  
