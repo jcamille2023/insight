@@ -3,6 +3,9 @@ import { getAuth, onAuthStateChanged, signOut} from "https://www.gstatic.com/fir
 import { getDatabase, set, ref, onValue, get, child } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-database.js";
 var uid;
 var dune;
+var first_row_created = false;
+var row_filled = false;
+
  const firebaseConfig = {
     apiKey: "AIzaSyCqUDOyX-OrrrncNv5uABW8hiLndPsMDMg",
     authDomain: "insight-34bc8.firebaseapp.com",
@@ -21,24 +24,40 @@ function display_new_events(data) {
  console.log(data);
  if (Object.keys(data).length !== 0) {
   var time_section = document.getElementById("time-section");
+  while (time_section.hasChildNodes()) {
+   time_section.removeChild(time_section.firstChild);
+  }
   var event_div = document.createElement("div");
+  event_div.style.background = 'url("https://cdn1.vectorstock.com/i/1000x1000/55/00/yellow-sticky-note-with-drawing-pin-vector-7575500.jpg")';
   console.log(event_div);
   var event_title = document.createElement("h3");
   var event_times = document.createElement("p");
-  var time_text = "From " + data.start_time + " to " + data.end_time;
-  event_times.appendChild(document.createTextNode("Times:"));
+
+  
+  var time_text = "From " + data.start_datetime + " to " + data.end_datetime;
+  event_times.appendChild(document.createTextNode("Dates:"));
   event_times.appendChild(document.createTextNode(time_text));
-  
-  
-  for(let n = 0; n < Object.keys(data.days_active).length; n++) {
-   console.log(data.days_active[n]);
-  }
+    
   var title_text = document.createTextNode(data.name);
   event_title.appendChild(title_text);
   event_div.appendChild(event_title);
   event_div.appendChild(event_times);
   console.log(event_div);
-  time_section.appendChild(event_div);
+  var event_table = document.getElementById("event-table");
+  if (row_filled == true || first_row_created == false) {
+   let row = event_table.insertRow(-1);
+   let cell = row.insertCell(-1);
+   cell.appendChild(event_div);
+   first_row_created == true;
+  }
+  else {
+   let lastRow = event_table.rows[event_table.rows.length - 1];
+   let cell = row.insertCell(-1);
+   cell.appendChild(event_div);
+   row_filled = true;
+  }
+  
+//  time_section.appendChild(event_div);
  }
  
 }
@@ -63,23 +82,11 @@ function add_times_to_schedule() {
   "<p>Times</p>" + 
   '<table style="color: white;">' +
   '<tbody><tr><td>'+
-  '<p>Start time</p>'+
-  '<input type="time" id="start_time"></td>'+
-  '<td><p>End time</p>'+
-  '<input type="time" id="end_time">'+
+  '<p>Start time/day</p>'+
+  '<input type="datetime-local" id="start_time"></td>'+
+  '<td><p>End time/day</p>'+
+  '<input type="datetime-local" id="end_time">'+
   '</td></tr></tbody></table>'+
-  '<h4>Event days</h4>'+
-  '<table><tbody><tr>'+
-  '<td><input type="checkbox" id="monday_active">Monday</input></td>'+
-  '<td><input type="checkbox" id="tuesday_active">Tuesday</input></td>'+
-  '</tr><tr>'+
-  '<td><input type="checkbox" id="wednesday_active">Wednesday</input></td>'+
-  '<td><input type="checkbox" id="thursday_active">Thursday</input></td>'+
-  '</tr><tr>'+
-  '<td><input type="checkbox" id="friday_active">Friday</input></td>'+
-  '<td><input type="checkbox" id="saturday_active">Saturday</input></td></tr>'+
-  '<tr><td colspan="2"><p style="text-align: center;"><input type="checkbox" id="sunday_active">Sunday</input></p></td>'+
-  '</tr></tbody></table>'+
   '<button class="new_event_buttons" onclick="submit_new_events()">Submit</button>'+
   '<button onclick="cancel_new_events()" class="new_event_buttons">Cancel</button>'+
   '</div>';
@@ -90,15 +97,8 @@ window.add_times_to_schedule = add_times_to_schedule;
 function submit_new_events() {
  var event_number = Math.floor(Math.random()*99999);
  var name = document.getElementById('name').value;
- var start_time = document.getElementById("start_time").value;
- var end_time = document.getElementById("end_time").value;
- var monday_active = document.getElementById("monday_active").checked;
- var tuesday_active = document.getElementById("tuesday_active").checked;
- var wednesday_active = document.getElementById("wednesday_active").checked;
- var thursday_active = document.getElementById("thursday_active").checked;
- var friday_active = document.getElementById("friday_active").checked;
- var saturday_active = document.getElementById("saturday_active").checked;
- var sunday_active = document.getElementById("sunday_active").checked;
+ var start_datetime = document.getElementById("start_time").value;
+ var end_datetime = document.getElementById("end_time").value;
  var days_active = {
    monday: monday_active,
    tuesday: tuesday_active,
@@ -111,9 +111,9 @@ function submit_new_events() {
  var event = {
   name: name,
   event_number: event_number,
-  start_time: start_time,
-  end_time: end_time,
-  days_active: days_active,
+  start_datetime: start_datetime,
+  end_datetime: end_datetime,
+  
  };
  
  const db = getDatabase();
