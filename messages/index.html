@@ -1,0 +1,59 @@
+<html><head>
+    <title>Dashboard - Insight</title>
+    <link rel="stylesheet" type="text/css" href="dashboard.css">
+    <link rel="stylesheet" type="text/css" href="stylesheet.css">
+</head><body>
+    <script src="dashboard.js" type="module"></script>
+    
+    
+    <div id="header">
+        <table>
+            <tbody>
+                <tr>
+                <td width="88.25%">
+                    <h2>Insight</h2>
+                </td>
+                <td>
+                    <p id="username">Jossaya Camille</p>
+                </td>
+                <td>
+                    <a href="dashboard">Dashboard</a>
+                </td>
+                <td><a href="javascript:logout()">Sign out</a></td>
+</tr>
+            </tbody>
+        </table>
+</div>
+<div id="container" class="container">
+<div id="main" class="box">
+<section id="open-section">
+        <h1 id="user-greeting">Hi, Jossaya Camille!</h1>
+        <h4>See your Arcs</h4>
+    </section>
+    <section id="content">
+    <button>Make a new arc</button>
+        
+                        <p>You have no Arcs.</p>
+                    <table>
+            <tbody>
+                <tr width="20%" id="arcs">
+                   
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    
+    
+    <script>
+        function messages() {
+            window.location.href = "./messages/";
+        }
+    </script>
+</div> <!-- end box -->
+<div id="add-events" class="box overlay" style="visiblity: hidden;"></div> <!-- end overlay -->
+</div> <!-- end container -->
+
+
+
+</div></body></html>
